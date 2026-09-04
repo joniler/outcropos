@@ -23,6 +23,8 @@ dnf5 -y install \
     hyprlock \
     hypridle \
     hyprpolkitagent \
+    gnome-keyring \
+    gnome-keyring-pam \
     xdg-desktop-portal-hyprland \
     hyprsunset \
     greetd \
