@@ -5,4 +5,4 @@ After=bootc-update.service ostree-finalize-staged.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/outcrop-pin-snapshots
+ExecStart=/usr/bin/outcrop-pin-snapshots
