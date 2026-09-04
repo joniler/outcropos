@@ -7,6 +7,13 @@ COPY system_files /system_files
 # ublue base-main: no desktop environment; RPM Fusion, firmware, fonts and bootc plumbing included.
 # Pinned to the Fedora 44 tag — renovate bumps the digest within F44 only.
 FROM ghcr.io/ublue-os/base-main:44@sha256:ded025ebc72a145d8b13d5bdf2d284018c24af9fd5fdcb4f713acd72034d3118
+
+# Declare the default root filesystem so bootc-image-builder / bootc install /
+# Anaconda don't need an explicit --rootfs (base-main carries no default).
+LABEL io.containers.bootc/rootfs="btrfs"
+LABEL org.opencontainers.image.title="outcropos"
+LABEL org.opencontainers.image.description="outcrop — immutable Hyprland + Noctalia laptop image (talaria palette)"
+LABEL org.opencontainers.image.source="https://github.com/joniler/outcropos"
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:testing
 # FROM ghcr.io/ublue-os/aurora:stable
