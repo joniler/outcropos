@@ -1,5 +1,10 @@
 [customizations.installer.kickstart]
 contents = """
+# Trim Anaconda's default (server-flavored) service set for a personal laptop.
+# Without this the Services module enables sshd, sssd, cups, avahi, smartd,
+# mdmonitor, systemd-homed, NFS/remote targets, VM tools, etc. at install time.
+services --disabled="sshd,sssd,sssd-kcm.socket,cups.path,cups.socket,avahi-daemon.service,avahi-daemon.socket,ModemManager,smartd,mcelog,vmtoolsd,vboxservice,machines.target,systemd-homed,systemd-userdbd.socket,mdmonitor,raid-check.timer,lvm-devices-import.service,lvm-devices-import.path,nfs-client.target,remote-fs.target,remote-cryptsetup.target,remote-integritysetup.target,remote-veritysetup.target,pcscd.socket"
+
 # Auto-reboot when the install finishes (no manual "reboot now" needed).
 reboot
 

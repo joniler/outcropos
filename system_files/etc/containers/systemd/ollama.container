@@ -1,5 +1,9 @@
-# Local AI — present but NOT enabled by default (zero boot cost until wanted):
-#   sudo systemctl enable --now ollama.service
+# Local AI — present but NOT enabled by default (zero boot cost until wanted).
+# NOTE: the podman quadlet generator applies [Install] sections itself at boot,
+# so any [Install] here would auto-start the container on every boot — which is
+# exactly what we don't want. It is intentionally omitted.
+#   Run once:        sudo systemctl start ollama.service
+#   Enable at boot:  sudo ln -s ollama.service /etc/systemd/system/multi-user.target.wants/
 # Kept fresh afterwards by `podman auto-update` (system podman-auto-update.timer).
 [Unit]
 Description=Ollama local AI (podman quadlet)
@@ -14,6 +18,3 @@ AddDevice=/dev/dri
 
 [Service]
 Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
