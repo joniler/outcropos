@@ -1,0 +1,22 @@
+# outcrop light — talaria palette (paper/warm gold, signals darkened for contrast)
+palette = 0=#1B1917
+palette = 1=#C8500F
+palette = 2=#5E7F4E
+palette = 3=#8F7A33
+palette = 4=#3E7A8A
+palette = 5=#B05A4A
+palette = 6=#3E7A8A
+palette = 7=#8A8378
+palette = 8=#6E675D
+palette = 9=#EE6018
+palette = 10=#A0CA92
+palette = 11=#C8B46C
+palette = 12=#68B6C8
+palette = 13=#D77968
+palette = 14=#68B6C8
+palette = 15=#FAF8F4
+background = F2F0EB
+foreground = 1B1917
+selection-background = 8F7A33
+selection-foreground = FFFFFF
+cursor-color = 8F7A33

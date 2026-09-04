@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+# Pin the newest deployments so they survive ostree garbage collection and stay
+# in the boot menu; keep only the newest KEEP pinned.
+# `ostree admin status --json` lists deployments newest-first (index 0 = booted
+# or staged-next). We rely on `bootc upgrade` never pruning pinned deployments.
+set -euo pipefail
+
+KEEP="${OUTCROP_KEEP_SNAPSHOTS:-10}"
+
+status_json="$(ostree admin status --json)"
+
+mapfile -t rows < <(python3 - "$status_json" <<'PY'
+import json, sys
+deps = json.loads(sys.argv[1])["deployments"]
+for i, d in enumerate(deps):
+    print(f"{i} {str(d.get('pinned', False)).lower()}")
+PY
+)
+
+for row in "${rows[@]}"; do
+    idx="${row%% *}"
+    pinned="${row##* }"
+    if (( idx < KEEP )); then
+        [[ "$pinned" == "true" ]] || ostree admin pin "$idx" >/dev/null
+    else
+        [[ "$pinned" == "true" ]] && ostree admin unpin "$idx" >/dev/null || true
+    fi
+done

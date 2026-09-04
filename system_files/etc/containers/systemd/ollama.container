@@ -1,0 +1,19 @@
+# Local AI — present but NOT enabled by default (zero boot cost until wanted):
+#   sudo systemctl enable --now ollama.service
+# Kept fresh afterwards by `podman auto-update` (system podman-auto-update.timer).
+[Unit]
+Description=Ollama local AI (podman quadlet)
+
+[Container]
+Image=docker.io/ollama/ollama:latest
+ContainerName=ollama
+PublishPort=127.0.0.1:11434:11434
+Volume=ollama-models.volume:/root/.ollama
+# AMD/Intel GPU render nodes. On AMD with ROCm add: AddDevice=/dev/kfd
+AddDevice=/dev/dri
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

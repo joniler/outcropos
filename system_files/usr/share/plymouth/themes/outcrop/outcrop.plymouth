@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=outcrop
+Description=outcrop labs — talaria ground + warm gold spinner
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/outcrop
+ScriptFile=/usr/share/plymouth/themes/outcrop/outcrop.script

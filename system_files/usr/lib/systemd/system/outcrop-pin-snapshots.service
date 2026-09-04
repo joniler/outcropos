@@ -1,0 +1,8 @@
+[Unit]
+Description=outcrop: pin the newest boot snapshots for rollback
+Wants=network-online.target
+After=bootc-update.service ostree-finalize-staged.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/outcrop-pin-snapshots

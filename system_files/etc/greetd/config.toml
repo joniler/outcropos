@@ -1,0 +1,10 @@
+# outcrop — greetd launches noctalia-greeter
+# Canonical config as printed by `noctalia-greeter-print-greetd-config`.
+# Sessions for the picker (e.g. Hyprland) come from /usr/share/wayland-sessions.
+
+[terminal]
+vt = 1
+
+[default_session]
+command = "/usr/bin/noctalia-greeter-session"
+user = "greeter"

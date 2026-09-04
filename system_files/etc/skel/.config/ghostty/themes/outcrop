@@ -1,0 +1,23 @@
+# outcrop dark — talaria palette (ground/panel/readout/warm gold)
+# normal colors are spec hexes; brights are lighter derivations for terminal use
+palette = 0=#090A09
+palette = 1=#EE6018
+palette = 2=#A0CA92
+palette = 3=#C8B46C
+palette = 4=#68B6C8
+palette = 5=#D77968
+palette = 6=#68B6C8
+palette = 7=#E7E2DB
+palette = 8=#302D29
+palette = 9=#F2803F
+palette = 10=#C2DEB6
+palette = 11=#E0CD8E
+palette = 12=#93CBDA
+palette = 13=#E59A8C
+palette = 14=#93CBDA
+palette = 15=#FAF8F4
+background = 090A09
+foreground = E7E2DB
+selection-background = C8B46C
+selection-foreground = 090A09
+cursor-color = C8B46C

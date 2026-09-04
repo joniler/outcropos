@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+# Install the outcrop GRUB theme where the bootloader can see it and regenerate
+# the menu config. Runs once on first boot: image-time /boot content does not
+# survive bootc deployment, so the theme is carried in /usr/share and copied
+# onto the real /boot partition here.
+set -euo pipefail
+
+SRC=/usr/share/grub/themes/outcrop
+DST=/boot/grub2/themes/outcrop
+
+[[ -d "$SRC" ]] || exit 0
+mkdir -p /boot/grub2/themes
+rm -rf "$DST"
+cp -a "$SRC" "$DST"
+
+# GRUB_THEME (set in /etc/default/grub.d/99-outcrop-theme.cfg) only takes effect
+# once the theme exists on /boot, so regenerate after the copy.
+if command -v grub2-mkconfig >/dev/null 2>&1; then
+    grub2-mkconfig -o /boot/grub2/grub.cfg
+fi

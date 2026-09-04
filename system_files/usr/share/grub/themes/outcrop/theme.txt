@@ -1,0 +1,16 @@
+# outcrop GRUB theme — talaria ground + warm gold
+# The logo is baked into bg.png (GRUB theme arithmetic is too limited for
+# centering a separate image reliably); menu text sits beneath it.
+desktop-image: "bg.png"
+title-text: ""
+
++ boot_menu {
+    left = 15%
+    top = 55%
+    width = 70%
+    height = 35%
+    item_height = 28
+    item_spacing = 6
+    item_color = "#8E877E"
+    selected_item_color = "#C8B46C"
+}

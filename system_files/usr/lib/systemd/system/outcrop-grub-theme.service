@@ -1,0 +1,11 @@
+[Unit]
+Description=outcrop: install GRUB theme to /boot and refresh the boot menu
+ConditionPathExists=/usr/share/grub/themes/outcrop/theme.txt
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/outcrop-grub-theme
+
+[Install]
+WantedBy=multi-user.target

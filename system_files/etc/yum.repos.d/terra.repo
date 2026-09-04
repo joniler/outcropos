@@ -1,0 +1,8 @@
+# Terra (Fyra Labs) — noctalia, noctalia-greeter, ghostty, nerd fonts, satty,
+# gpu-screen-recorder. Same repo joniler's hypr-fedora-desktop used.
+[terra]
+name=Terra $releasever - $basearch
+baseurl=https://repos.fyralabs.com/terra$releasever/
+enabled=1
+gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra$releasever/key.asc

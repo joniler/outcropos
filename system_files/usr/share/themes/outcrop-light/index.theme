@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=outcrop-light
+Comment=outcrop light — talaria palette (paper, warm gold)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=outcrop-light
+MetacityTheme=outcrop
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu

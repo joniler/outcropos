@@ -1,0 +1,14 @@
+# outcrop — kanshi monitor profiles (auto-applied on dock/undock/hotplug)
+# Find output names: `wlr-randr` or `hyprctl monitors`
+
+profile laptop {
+    output eDP-1 enable position 0,0
+}
+
+# Example docked setup: external primary right of the laptop panel.
+# Uncomment and adjust names/modes once docked once:
+#
+# profile docked {
+#     output eDP-1 enable position 0,0 scale 2
+#     output DP-2 enable mode 2560x1440@60 position 1536,0
+# }
