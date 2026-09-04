@@ -36,7 +36,9 @@ concurrency:
 jobs:
   build:
     name: Build disk images
-    runs-on: ${{ inputs.platform == 'amd64' && 'ubuntu-26.04' || 'ubuntu-26.04-arm' }}
+    # ubuntu-24.04 for amd64: on 26.04 runners osbuild's mounts fail with
+    # EPERM ("mount: /run/osbuild/...: permission denied") — see run 33845300476.
+    runs-on: ${{ inputs.platform == 'amd64' && 'ubuntu-24.04' || 'ubuntu-26.04-arm' }}
     strategy:
       fail-fast: false
       matrix:
@@ -68,10 +70,12 @@ jobs:
           sudo apt install -y \
             podman
 
-      # (No "maximize build space" step: ublue-os/remove-unwanted-software v9
-      # breaks on ubuntu-26.04 runners — powershell is no longer preinstalled,
-      # so its `apt-get remove powershell` exits 100. ubuntu-26.04 runners
-      # already ship ~90G free, far more than BIB needs.)
+      # Disk-space cleanup — needed again now that amd64 runs on ubuntu-24.04
+      # (~20G free). Pinned past the v10 rewrite; the v9 tag's
+      # `apt-get remove powershell` exits 100 when powershell isn't preinstalled.
+      - name: Maximize build space
+        if: inputs.platform != 'arm64'
+        uses: ublue-os/remove-unwanted-software@695eb75bc387dbcd9685a8e72d23439d8686cba6
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
