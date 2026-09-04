@@ -33,12 +33,23 @@ Everything CLI can be done in ghostty (SUPER+Return); GUI items say so explicitl
 - [ ] `bootc upgrade` → new deployment appears **pinned**; GRUB lists both entries
 - [ ] Flatpak: `flatpak remotes` shows flathub; `flatpak install flathub org.mozilla.firefox` works
 - [ ] ollama NOT running by default: `systemctl is-active ollama.service` → inactive
-      (enable later: `sudo systemctl enable --now ollama.service`)
+      (run once: `sudo systemctl start ollama.service`;
+       persist: `sudo ln -s ollama.service /etc/systemd/system/multi-user.target.wants/`
+       — the quadlet has no [Install], so plain `systemctl enable` can't be used)
+- [ ] First login reaches the compositor immediately — no 60s countdown
+      (uwsm removed from the session launcher; if a wait ever returns,
+      `journalctl --user -b | grep uwsm` shows what it's waiting on)
 
 ## Known-cosmetic (not failures)
 - Anaconda hub title renders product as "44" ("It's time to install 44.") — installer-only quirk
 - Secure Boot must be OFF in BIOS — image is unsigned (laptop only)
 
 ## VM-only notes
-- VM user: `jon` / `outcropvm`; SSH forward `localhost:50922` (no sshd in image — drive via console)
+- VM user/password: whatever you type into Anaconda's Users screen — the
+  kickstart sets no credentials. Note it during install if SSH access is wanted.
+- sshd is disabled by the kickstart (`services --disabled`); the port-50922
+  forward only works if you re-enable it (`sudo systemctl enable --now sshd`).
+  Driving the VM via the QEMU monitor/console works without it.
+- Repeated wrong passwords trigger pam_faillock (deny=3, 10 min lockout) —
+  if logins suddenly stop accepting a correct password, wait it out.
 - VM "GPU" is virtio-gpu; real GPU/fingerprint/hotplug checks are laptop-only
